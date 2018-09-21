@@ -1,7 +1,7 @@
 '''
-Created on _______________________
-@author:   _______________________
-Pledge:    _______________________
+Created on 9/21/18
+@author:   Max Shi
+Pledge:    I pledge my honor that I have abided by the Stevens Honor Code
 
 CS115 - Hw 3
 '''
@@ -13,7 +13,16 @@ CS115 - Hw 3
 ' See the PDF in Canvas for more details.
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 # your code goes here
-
+def giveChange(amt, coins):
+    if amt == 0: return [0,[]]
+    elif coins == []: return [float("inf"),[]]
+    elif coins[0]>amt: return giveChange(amt,coins[1:])
+    else:
+        useList = giveChange(amt-coins[0],coins)
+        use = [(1+useList[0]),([coins[0]]+useList[1])]
+        loseList = giveChange(amt,coins[1:])
+        lose = [loseList[0],loseList[1]]
+        return use if use[0]<lose[0] else lose
 # Here's the list of letter values and a small dictionary to use.
 # Leave the following lists in place.
 scrabbleScores = \
