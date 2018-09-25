@@ -33,3 +33,7 @@ def reverse2(L):
         if L==[]: return acc
         else: return rev([L[0]]+acc, L[1:])
     return rev([],L)
+
+
+
+
