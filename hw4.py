@@ -5,7 +5,7 @@
 """
 
 def adjSum(L):
-    L=L+[0]
+    if L[0] == 1: L=L+[0]
     if L[1] == 0: return [1]
     else: return [L[0]+L[1]]+adjSum(L[1:])
 def pascal_row(N):
