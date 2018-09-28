@@ -5,12 +5,31 @@
 """
 
 def adjSum(L):
+<<<<<<< HEAD
     if L[0] == 1: L=L+[0]
+=======
+    '''Returns a list of the sums of the given elements in the list with a 1 on the end'''
+    L=L+[0]
+>>>>>>> 86e6f2c6e3d0a3dec7ea1095dd8cead396724a74
     if L[1] == 0: return [1]
     else: return [L[0]+L[1]]+adjSum(L[1:])
 def pascal_row(N):
+    '''Returns the given row N of Pascal's Triangle'''
     if N == 0: return [1]
     else: return [1]+adjSum(pascal_row(N-1))
 def pascal_triangle(N):
+    '''Returns a list of Pascal's triangle's rows from row 0 up to row N'''
     if(N==0): return [[1]]
     else: return pascal_triangle(N-1)+[[1]+adjSum(pascal_row(N-1))]
+def test_pascal_row():
+    '''Runs four test cases on pascal_row(N)'''
+    assert(pascal_row(3) == [1,3,3,1])
+    assert(pascal_row(10)== [1, 10, 45, 120, 210, 252, 210, 120, 45, 10, 1])
+    assert(pascal_row(0) == [1])
+    assert(pascal_row(5) == [1, 5, 10, 10, 5, 1])
+def test_pascal_triangle():
+    '''Runs four test cases on pascal_triangle(N)'''
+    assert(pascal_triangle(3) ==[[1], [1, 1], [1, 2, 1], [1, 3, 3, 1]])
+    assert(pascal_triangle(5) ==[[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1], [1, 5, 10, 10, 5, 1]])
+    assert(pascal_triangle(0) ==[[1]])
+    assert(pascal_triangle(1) ==[[1],[1,1]])

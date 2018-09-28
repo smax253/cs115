@@ -14,6 +14,7 @@ CS115 - Hw 3
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 # your code goes here
 def giveChange(amt, coins):
+    '''Returns a tuple of the amount of coins and the coins needed to give the change for the given value amt with the given list of coins'''
     if amt == 0: return [0,[]]
     elif coins == []: return [float("inf"),[]]
     elif coins[0]>amt: return giveChange(amt,coins[1:])

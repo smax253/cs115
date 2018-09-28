@@ -5,7 +5,11 @@
 """
 
 def knapsack(cap, items):
+<<<<<<< HEAD
     '''Returns the maximum value and the list of items that can be created out of the subset of the items given with the given capacity'''
+=======
+    '''Returns a tuple of the maximum value of items and the items that can be taken with the given capacity from the given list of items'''
+>>>>>>> 86e6f2c6e3d0a3dec7ea1095dd8cead396724a74
     if items == []: return [0,[]]
     elif items[0][0]>cap: return knapsack(cap, items[1:])
     else:
