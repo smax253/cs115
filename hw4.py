@@ -5,12 +5,10 @@
 """
 
 def adjSum(L):
-<<<<<<< HEAD
-    if L[0] == 1: L=L+[0]
-=======
+
     '''Returns a list of the sums of the given elements in the list with a 1 on the end'''
     L=L+[0]
->>>>>>> 86e6f2c6e3d0a3dec7ea1095dd8cead396724a74
+
     if L[1] == 0: return [1]
     else: return [L[0]+L[1]]+adjSum(L[1:])
 def pascal_row(N):
