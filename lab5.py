@@ -1,7 +1,7 @@
 '''
-Created on _______________________
-@author:   _______________________
-Pledge:    _______________________
+Created on 10/3/18
+@author:   Max Shi
+Pledge:    I pledge my honor that I have abided by the Stevens Honor System
 
 CS115 - Lab 5
 '''
