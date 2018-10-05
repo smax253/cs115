@@ -12,7 +12,7 @@ CS115 - Hw 3
 ' Implement the function giveChange() here:
 ' See the PDF in Canvas for more details.
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-# your code goes here
+
 def giveChange(amt, coins):
     '''Returns a tuple of the amount of coins and the coins needed to give the change for the given value amt with the given list of coins'''
     if amt == 0: return [0,[]]
