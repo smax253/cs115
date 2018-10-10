@@ -60,7 +60,7 @@ print(fast_lucas(24))  # 103682
 print(fast_lucas(40))  # 228826127
 print(fast_lucas(50))  # 28143753123
 
-print(fast_changefrom h)
+print(fast_change(131, [1, 5, 10, 20, 50, 100]))
 print(fast_change(292, [1, 5, 10, 20, 50, 100]))
 print(fast_change(673, [1, 5, 10, 20, 50, 100]))
 print(fast_change(724, [1, 5, 10, 20, 50, 100]))
