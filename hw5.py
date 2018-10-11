@@ -50,7 +50,7 @@ def fast_change(amount, coins):
             return sol
 
     # Call the helper. Note we converted the list to a tuple.
-    return fast_change_helper(amount, tuple(coins), {})
+    return fast_change_helper(amount, tuple(coins), {})[0]
 
 # If you did this correctly, the results should be nearly instantaneous.
 print(fast_lucas(3))  # 4
