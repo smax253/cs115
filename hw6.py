@@ -29,6 +29,7 @@ def binaryToNum(s):
 def compress(s):
     '''Returns a compressed version of string s with run length encoding with max length defined in file'''
     def compress_helper(encode, state, num):
+        '''compresses the encode string with a state boolean using num as an accumulator'''
         if encode == '': return num
         elif(num == "1"*COMPRESSED_BLOCK_SIZE): return num + compress_helper(encode,not state, "0"*COMPRESSED_BLOCK_SIZE)
         elif int(encode[0]) == int(state):
@@ -40,6 +41,7 @@ def compress(s):
 def uncompress(s):
     '''Returns the uncompressed string compressed with the compress() function'''
     def uncompress_helper(decode, state):
+        '''uncompresses the decode string using state boolean'''
         if decode == "": return ""
         else: return binaryToNum(decode[:COMPRESSED_BLOCK_SIZE])*str(int(state)) + uncompress_helper(decode[COMPRESSED_BLOCK_SIZE:],not state)
     return uncompress_helper(s,False)
@@ -47,6 +49,7 @@ def uncompress(s):
 def compression(s):
     '''Returns the ratio of the length between compress and the original string'''
     def comp_length(comp):
+        '''Returns the length of comp'''
         if comp == "": return 0
         else: return 1 + comp_length(comp[1:])
     return comp_length(compress(s))/comp_length(s)
