@@ -30,25 +30,25 @@ def compress(s):
     '''Returns a compressed version of string s with run length encoding with max length defined in file'''
     def compress_helper(encode, state, num):
         if encode == '': return num
-        elif(num == "1"*COMPRESSED_BLOCK_SIZE): return num+compress_helper(encode,not state, "0"*COMPRESSED_BLOCK_SIZE)
+        elif(num == "1"*COMPRESSED_BLOCK_SIZE): return num + compress_helper(encode,not state, "0"*COMPRESSED_BLOCK_SIZE)
         elif int(encode[0]) == int(state):
             return compress_helper(encode[1:],state,increment(num))
         else:
-            return num+ compress_helper(encode,not state, "0"*COMPRESSED_BLOCK_SIZE)
+            return num + compress_helper(encode,not state, "0"*COMPRESSED_BLOCK_SIZE)
     return compress_helper(s,False,"0"*COMPRESSED_BLOCK_SIZE)
 
 def uncompress(s):
     '''Returns the uncompressed string compressed with the compress() function'''
     def uncompress_helper(decode, state):
         if decode == "": return ""
-        else: return binaryToNum(decode[:COMPRESSED_BLOCK_SIZE])*str(int(state))+uncompress_helper(decode[COMPRESSED_BLOCK_SIZE:],not state)
+        else: return binaryToNum(decode[:COMPRESSED_BLOCK_SIZE])*str(int(state)) + uncompress_helper(decode[COMPRESSED_BLOCK_SIZE:],not state)
     return uncompress_helper(s,False)
 
 def compression(s):
     '''Returns the ratio of the length between compress and the original string'''
     def comp_length(comp):
         if comp == "": return 0
-        else: return 1+comp_length(comp[1:])
+        else: return 1 + comp_length(comp[1:])
     return comp_length(compress(s))/comp_length(s)
 '''
     1. If every bit is different compared to the last one, starting with a 1, the compressed string would have length of 5*64+5 or 5*65.
