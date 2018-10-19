@@ -29,27 +29,42 @@ def binaryToNum(s):
 def compress(s):
     '''Returns a compressed version of string s with run length encoding with max length defined in file'''
     def compress_helper(encode, state, num):
+        '''compresses the encode string with a state boolean using num as an accumulator'''
         if encode == '': return num
-        elif(num == "1"*COMPRESSED_BLOCK_SIZE): return num+compress_helper(encode,not state, "0"*COMPRESSED_BLOCK_SIZE)
+        elif(num == "1"*COMPRESSED_BLOCK_SIZE): return num + compress_helper(encode,not state, "0"*COMPRESSED_BLOCK_SIZE)
         elif int(encode[0]) == int(state):
             return compress_helper(encode[1:],state,increment(num))
         else:
-            return num+ compress_helper(encode,not state, "0"*COMPRESSED_BLOCK_SIZE)
+            return num + compress_helper(encode,not state, "0"*COMPRESSED_BLOCK_SIZE)
     return compress_helper(s,False,"0"*COMPRESSED_BLOCK_SIZE)
 
 def uncompress(s):
     '''Returns the uncompressed string compressed with the compress() function'''
     def uncompress_helper(decode, state):
+        '''uncompresses the decode string using state boolean'''
         if decode == "": return ""
-        else: return binaryToNum(decode[:COMPRESSED_BLOCK_SIZE])*str(int(state))+uncompress_helper(decode[COMPRESSED_BLOCK_SIZE:],not state)
+        else: return binaryToNum(decode[:COMPRESSED_BLOCK_SIZE])*str(int(state)) + uncompress_helper(decode[COMPRESSED_BLOCK_SIZE:],not state)
     return uncompress_helper(s,False)
 
 def compression(s):
     '''Returns the ratio of the length between compress and the original string'''
     def comp_length(comp):
+        '''Returns the length of comp'''
         if comp == "": return 0
-        else: return 1+comp_length(comp[1:])
+        else: return 1 + comp_length(comp[1:])
     return comp_length(compress(s))/comp_length(s)
 '''
-    If every bit is different compared to the last one, starting with a 1, the compressed string would have length of 5*64+5 or 5*65.
+    1. If every bit is different compared to the last one, starting with a 1, the compressed string would have length of 5*64+5 or 5*65.
+    2. An entirely white square -- "0"*64 -- 0.390625
+    An entirely black square -- "1"*64 -- 0.46875
+    A checkerboard -- "01"*32 -- 5.0
+    print(compression("0"*64))
+    print(compression("1"*64))
+    print(compression("01"*32))
+    3. Laicompress is impossible because of the way to compress a string such as the one in comment 1.
+    In order to compress that string, run-length encoding cannot be used, and binary values have to represent patterns.
+    Run-length encoding cannot be used because each run would be length 1, the only way to make it the smallest size possible is making the 
+    maximum run length 1, which makes the encoded value still the same length.
+    Therefore, binary values must represent patterns. However, two bits have four possible patterns, which will need two bits to encode, three bits have eight possible patterns, which need three bits to encode, and so forth.
+    Therefore, this algorithm is impossible.
 '''
