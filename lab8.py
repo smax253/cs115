@@ -99,16 +99,16 @@ Factorial = """
 7       halt
 """ 
 fibonacci = """
-00 read r1
-01 setn r4 1
-02 jeqzn r1 09 #HALTCODE
-03 write r3
-04 copy r3 r4
-05 add r4 r2 r3
-06 copy r2 r3
-07 addn r1 -1
-08 jumpn 02
-09 halt
+00 read r1       #Read in user input
+01 setn r4 1     #Set hidden next number to 1
+02 jeqzn r1 09   #If no numbers to print jump to halt
+03 write r3      #write out number
+04 copy r3 r4    #Copy hidden number into second number
+05 add r4 r2 r3  #Set hidden number to sums of current two numbers
+06 copy r2 r3    #Copy second number to first
+07 addn r1 -1    #Decrement numbers to print
+08 jumpn 02      #jump back to halt condition
+09 halt          #halt
 """
 
 
