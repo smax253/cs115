@@ -34,6 +34,8 @@ def reverse2(L):
         else: return rev([L[0]]+acc, L[1:])
     return rev([],L)
 
+def primeWack(N):
+    return list(filter(lambda x:(N%x==0 and sum(map(lambda w: x%w==0, range(2,x)))),range(2,N)))
 
 
 
