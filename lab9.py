@@ -4,6 +4,8 @@
     10/29/18
     I pledge my honor that I have abided by the Stevens Honor System
 """
+from cs5png import *   # You may already have this line... 
+
 def mult(c, n):
     """Returns c times an integer n using only addition"""
     result = 0
@@ -33,3 +35,18 @@ def inMSet(c,n):
         result = result**2 + c
         if abs(result)>2: return False
     return True
+
+def scale(pix, pixMax, floatMin, floatMax):
+    percent = 1.0*pix/pixMax
+    total = floatMax-floatMin
+    return total*percent+floatMin
+
+def mandlebrot(width, height):
+    n=25
+    image = PNGImage(width, height)
+    for col in range(width):
+        for row in range(height):
+            c = scale(col, width, -2.0, 1.0) + scale(row, height, -1.0,1.0)*1j
+            if inMSet(c, n):
+                image.plotPoint(col, row)
+    image.saveFile()
