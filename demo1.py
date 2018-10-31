@@ -34,11 +34,16 @@ def reverse2(L):
         else: return rev([L[0]]+acc, L[1:])
     return rev([],L)
 
+<<<<<<< HEAD
 def factorial(N):
     ans = 1
     for x in range(1,N+1):
         ans*=x
     return ans
+=======
+def primeWack(N):
+    return list(filter(lambda x:(N%x==0 and sum(map(lambda w: x%w==0, range(2,x)))),range(2,N)))
+>>>>>>> b8becfe7f0cece2badd5b521c27a617ad73ac407
 
 def mapSqr(L):
     ans = []

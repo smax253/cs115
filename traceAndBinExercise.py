@@ -48,19 +48,17 @@ def numToTC(N):
     def zerosToAdd(s):
         if s=="": return 7
         else: return zerosToAdd(s[1:])-1
-    def flip(s):
-        if s == "": return ""
-        elif s[0] == "1": return "0"+flip(s[1:])
-        else: return "1"+flip(s[1:])
-    s=""
-    if N<=127 and N>=0:
+    if N<128 and N>=0:
         s = numToBinary(N)
-        s = zerosToAdd(s)*"0"+s
-        s = "0"+s
-    elif N<0 and N>=-128:
-        s = flip(increment(numToBinary(~N)))
-        s = zerosToAdd(s)*"0"+s
-        if N!=128: s = "1"+s
+        return "0"+"0"*zerosToAdd(s)+s
+    elif N>=-128:
+        N*=-1
+        s = numToBinary(N)
+        s = "0"*zerosToAdd(s)+s
+        s = map(lambda x: "0" if x=="1" else "1", s)
+        s = "".join(s)
+        if N!=128: s="1"+s
+        s= increment(s)
     else: s = "Error"
     
     return s
@@ -114,3 +112,15 @@ def isOdd(n):
     else:
         return True
 
+def allTuples(n):
+    '''Return a list of all n-lists of ones and zeros, in increasing
+    order.  For example, allTuples(2) is [[0,0],[0,1], [1,0], [1,1]].
+    Assume n>=0.
+    Note: another option would be to use tuples.'''
+    if n==0:
+        return [ [ ] ]     # the list of 0-element lists, of which there's exactly one
+    else:
+        L = allTuples(n-1)
+        Zerofirst = map(lambda t: [0]+t, L)
+        Onefirst = map(lambda t: [1]+t, L)
+        return Zerofirst + Onefirst
