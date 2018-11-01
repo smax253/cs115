@@ -37,11 +37,13 @@ def inMSet(c,n):
     return True
 
 def scale(pix, pixMax, floatMin, floatMax):
+    """Returns a float based on the row or column compared to the maximum row or column and the bounds between the two min and max floats"""
     percent = 1.0*pix/pixMax
     total = floatMax-floatMin
     return total*percent+floatMin
 
 def mandlebrot(width, height):
+    """Prints mandlebrot set with given width and height"""
     n=25
     image = PNGImage(width, height)
     for col in range(width):
