@@ -1,6 +1,6 @@
 '''
-@author:
-Pledge:
+@author: Max Shi
+Pledge: I pledge my honor that I have abided by the Stevens Honor System
 
 CS115 - Hw 9
 
