@@ -8,7 +8,7 @@
 SAMPLE_FILE_CONTENT = ['dave:alanis Morrisset, Khaled, Michael Jackson','sue:Kate Bush,Nirvana,Michael Jackson']
 SAMPLE_DATA = [['Dave', 'Sue'],[['alanis morrisset', 'khaled', 'michael jackson'], ['kate bush', 'nirvana', 'michael jackson']],1]
 
-from cs115 import *
+from cs115 import filter
 
 
 def loadFiles():
@@ -25,9 +25,9 @@ def loadFiles():
                 artists[i] = artists[i].strip().lower()
             artists.sort()
             fileartists += [artists]
-            filenames += [name.strip().title()]
+            filenames += [name.strip()]
         input_file.close()
-    except IOError as error:
+    except IOError:
         pass
     return [filenames, fileartists]
 
