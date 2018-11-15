@@ -62,6 +62,23 @@ def fib(N):
         second = third
         N-=1
     return second
+
+L2 = list(range(2,7))
+L1 = list(range(5,10))
+
+def ncommon(L,M):
+    n=0
+    i=0
+    j = 0
+    while i<len(L) and j<len(M):
+        if L[i] == M[j]:
+            n+=1
+            i+=1
+            j+=1
+        elif L[i]<M[j]:
+            i+=1
+        else: j+=1
+    return n
         
 
 
