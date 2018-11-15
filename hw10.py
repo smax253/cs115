@@ -84,15 +84,22 @@ def getRecommendations(data):
     #print(data)
     recommendations = []
     userArtists = data[1][data[2]]
+    mostCommonCount = 2
     for index in range(len(data[1])):
         if(data[0][index][-1] != '$'):
             artists = data[1][index]
             if not (userArtists == artists):
                 common = getIntersection(userArtists, artists)
                 #print("common " + str(common))
-                if(len(common)>=2):
+                if(len(common)>mostCommonCount):
+                    recommendations = []
+                    mostCommonCount = len(common)
                     for entry in artists:
                         if not(entry in userArtists):
+                            recommendations += [entry]
+                elif(len(common) == mostCommonCount):
+                    for entry in artists:
+                        if (entry not in userArtists) and (entry not in recommendations):
                             recommendations += [entry]
     if len(recommendations)==0:
         print("No recommendations available at this time")
