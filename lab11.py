@@ -95,8 +95,9 @@ def search(L, i, x):
     # Linear search: try successive indexes, starting with 0.
     # Invariant: L[0:j] <= x and j <= i
     # If you want to put the invariant as an assertion, use allLE from above.
-    for index in range(i):
-        current = i-index-1
+    for index in range(1,i+1):
+        current = i-index
+        #print(current)
         #print(L[current])
         if L[current]<=x: return current+1
     return 0
