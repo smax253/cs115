@@ -4,7 +4,7 @@
 piles = []         # list containing the current pile amounts
 num_piles = 0      # number of piles, which should equal len(pile)
 from cs115 import reduce,map
-from random import *
+from random import randint
 def play_nim():
     """ plays game of nim between user and computer; computer plays optimally """
     
