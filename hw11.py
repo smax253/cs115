@@ -1,5 +1,9 @@
-# nim template DNaumann (2018), for assignment nim_hw11.txt 
-
+"""
+    Hw 11 - Nim
+    Max Shi
+    11/21/18
+    I pledge my honor that I have abided by the Stevens Honor System
+"""
 # Global variables used by several functions
 piles = []         # list containing the current pile amounts
 num_piles = 0      # number of piles, which should equal len(pile)
@@ -125,11 +129,13 @@ def opt_play():
     global num_piles 
     nimsum = game_nim_sum()
     pilesums = map(lambda x: x^nimsum, piles)
+    #print(nimsum)
+    #print(pilesums)
     index = 0
-    while(piles[index]<pilesums[index] and index<num_piles):
+    while(index<num_piles and piles[index]<=pilesums[index]):
         index+=1
     if index == num_piles:
-        return rand_play
+        return rand_play()
     else:
         n = piles[index] - pilesums[index]
         return (index,n)
