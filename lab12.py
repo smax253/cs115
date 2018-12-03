@@ -26,29 +26,22 @@ class Car(object):
 
     
     '''Write getters for make, model, mpg, and tank_capacity.'''
-    @property
-    def make(self):
+    
+    def get_make(self):
         return self.__make
-    @make.setter
-    def make(self, make):
+    def set_mate(self, make):
         self.__make = make
-    @property
-    def model(self):
+    def get_model(self):
         return self.__model
-    @model.setter
-    def model(self, model):
+    def set_model(self, model):
         self.__model = model
-    @property
-    def mpg(self):
+    def get_mpg(self):
         return self.__mpg
-    @mpg.setter
-    def mpg(self, mpg):
+    def set_mpg(self, mpg):
         self.__mpg = mpg
-    @property
-    def tank_capacity(self):
+    def get_tank_capacity(self):
         return self.__tank_capacity
-    @tank_capacity.setter
-    def tank_capacity(self, tank_capacity):
+    def set_tank_capacity(self, tank_capacity):
         self.__tank_capacity = tank_capacity
 
     '''Write setters for mpg and tank_capacity.'''
