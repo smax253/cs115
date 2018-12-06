@@ -7,6 +7,7 @@
 
 class Board:
     def __init__(self, width = 7, height = 6):
+        """Initialize the game board with default values for a connect four board or specified values."""
         self.__gameBoard = []
         self.__width = width
         self.__height = height
@@ -17,6 +18,7 @@ class Board:
                 self.__gameBoard[col] += " "
 
     def __str__(self):
+        """Converts the board into a string representation to be printed"""
         s = ""
         for row in range(self.__height):
             s+="|"
@@ -30,9 +32,11 @@ class Board:
         return s+"\n"
 
     def allowsMove(self, col):
+        """Returns whether there is a possible move in a column of the game board"""
         return self.__gameBoard[col][0] == " "
     
     def addMove(self, col, ox):
+        """Adds a move to the specified column on the board with symbol ox"""
         if self.allowsMove(col):
             topindex = 0
             while(topindex<self.__height and self.__gameBoard[col][topindex]==" "):
@@ -60,6 +64,7 @@ class Board:
             else: nextCh = 'X'
             
     def delMove(self, col):
+        """Deletes the last move in the column in the board"""
         for column in self.__gameBoard:
             for entry in column:
                 if entry != " ":
@@ -67,6 +72,7 @@ class Board:
                     break
 
     def winsFor(self, ox):
+        """Checks if player ox has 4 connected pieces"""
         maxRow = self.__height-3
         maxCol = self.__width-3
         for col in range(self.__width):
@@ -118,11 +124,13 @@ class Board:
         return False
     
     def hostGame(self):
+        """Hosts a game on a standard connect four board between O and X"""
         gameDone = False
         turn = "X"
-        while(not gameDone):
+        turncount = 0
+        while not gameDone and turncount<42:
             xInput = -1
-            while (0>xInput or xInput>self.__width) and self.allowsMove(xInput):
+            while (xInput<0 or xInput>self.__width) or not self.allowsMove(xInput):
                 try:
                     xInput = int(input("Input "+turn+"'s move: "))
                 except ValueError:
@@ -134,19 +142,8 @@ class Board:
                 gameDone = True
             elif turn=="X": turn = "O"
             else: turn = "X"
+            turncount+=1
+        if not gameDone:
+            print("It's a tie!")
 
 
-
-
-b = Board()
-b.setBoard("1212121")
-print(b)
-a = Board()
-a.setBoard("12234334454")
-print(a)
-c = Board()
-c.setBoard("11223344")
-print(c)
-d = Board()
-d.setBoard("43321221161")
-print(d)
